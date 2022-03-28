@@ -8,26 +8,12 @@
 
 - (void)registerUserId:(CDVInvokedUrlCommand*)command {
     [self.commandDelegate runInBackground:^{
-        NSString *tokenUrl = [command argumentAtIndex:0];
-        NSString *userId = [command argumentAtIndex:1];
-        if ([userId isEqualToString:@"null"]) {
-            //dont register yet - there is no userid
-            return;
-        }
-        NSString *authToken= [command argumentAtIndex:2];
-        NSString *bearerToken = [NSString stringWithFormat:@"Bearer %@", authToken];
-        BeamsTokenProvider *tokenProvider = [[BeamsTokenProvider alloc] initWithAuthURL:tokenUrl getAuthData:^AuthData *{
-            NSDictionary *headers = @{
-                @"Authorization" : bearerToken
-            };
-            AuthData *toRet = [[AuthData alloc] initWithHeaders:headers queryParams:@{}];
-            return toRet;
-        }];
-        [PushNotificationsStatic setUserId:userId tokenProvider:tokenProvider completion:^(NSError *error) {
-            if (error != nil) {
-                NSLog(@"%@", error);
-            }
-        }];
+      // if using one instance id throughout the whole app do the following:
+      [[PushNotifications shared] startWithInstanceId:@"73f408d7-80a4-4986-a105-7be1f7081dbc"]; // Can be found here: https://dash.pusher.com
+      [[PushNotifications shared] registerForRemoteNotifications];
+
+      NSError *anyError;
+      [[PushNotifications shared] addDeviceInterestWithInterest:@"debug-test" error:&anyError];
     }];
     CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
