@@ -6,6 +6,16 @@
 
 @implementation PusherBeams
 
+static PusherBeams* pusherbeams;
+
++ (PusherBeams*) pusherbeams {
+	return pusherbeams;
+}
+
+- (void)pluginInitialize {
+	pusherbeams = self;
+}
+
 - (void)registerUserId:(CDVInvokedUrlCommand*)command {
     [self.commandDelegate runInBackground:^{
       // if using one instance id throughout the whole app do the following:
@@ -28,17 +38,8 @@
     }];
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [[PushNotifications shared] registerDeviceToken:deviceToken];
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    [[PushNotifications shared] handleNotificationWithUserInfo:userInfo];
-    NSLog(@"%@", userInfo);
-}
-
--(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@"Remote notification support is unavailable due to error: %@", error.localizedDescription);
+- (void)registerDeviceToken:(NSData*)deviceToken {
+	[[PushNotifications shared] registerDeviceToken:deviceToken];
 }
 
 @end
