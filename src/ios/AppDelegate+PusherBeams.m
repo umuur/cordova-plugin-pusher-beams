@@ -5,7 +5,13 @@
 
 // A UIApplication delegate
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-		[PusherBeams.pusherBeams registerDeviceToken:deviceToken];
+  NSLog(@"didRegisterForRemoteNotificationsWithDeviceToken starting")
+	[PusherBeams.pusherBeams registerDeviceToken:deviceToken];
+	NSLog(@"registerDeviceToken completed")
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  NSLog(@"Remote notification support is unavailable due to error: %@", error.localizedDescription);
 }
 
 @end

@@ -17,11 +17,12 @@ static PusherBeams* pusherbeams;
 }
 
 - (void)registerUserId:(CDVInvokedUrlCommand*)command {
-    [self.commandDelegate runInBackground:^{
-      // if using one instance id throughout the whole app do the following:
+  [self.commandDelegate runInBackground:^{
+  NSLog(@"registerUserId starting")
+		// if using one instance id throughout the whole app do the following:
       [[PushNotifications shared] startWithInstanceId:@"73f408d7-80a4-4986-a105-7be1f7081dbc"]; // Can be found here: https://dash.pusher.com
       [[PushNotifications shared] registerForRemoteNotifications];
-
+NSLog(@"registerForRemoteNotifications completed");
       NSError *anyError;
       [[PushNotifications shared] addDeviceInterestWithInterest:@"debug-test" error:&anyError];
     }];
@@ -39,7 +40,9 @@ static PusherBeams* pusherbeams;
 }
 
 - (void)registerDeviceToken:(NSData*)deviceToken {
+	NSLog(@"deviceTokenMethod inside the plugin")
 	[[PushNotifications shared] registerDeviceToken:deviceToken];
+	NSLog(@"registerDeviceToken method executed")
 }
 
 @end
