@@ -7,3 +7,5 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 		[PusherBeams.pusherBeams registerDeviceToken:deviceToken];
 }
+
+@end
