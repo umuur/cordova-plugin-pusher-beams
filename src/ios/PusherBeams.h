@@ -1,4 +1,5 @@
 #import <Cordova/CDVPlugin.h>
+#import "AppDelegate.h"
 
 @interface PusherBeams : CDVPlugin
 

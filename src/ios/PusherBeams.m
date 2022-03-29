@@ -6,14 +6,14 @@
 
 @implementation PusherBeams
 
-static PusherBeams* pusherbeams;
+static PusherBeams* pusherBeams;
 
 + (PusherBeams*) pusherBeams {
-	return pusherbeams;
+	return pusherBeams;
 }
 
 - (void)pluginInitialize {
-	pusherbeams = self;
+	pusherBeams = self;
 }
 
 - (void)registerUserId:(CDVInvokedUrlCommand*)command {
