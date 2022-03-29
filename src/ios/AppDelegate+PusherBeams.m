@@ -1,6 +1,10 @@
 #import "AppDelegate+PusherBeams.h"
 #import "PusherBeams.h"
 
+@interface AppDelegate ()
+
+@end
+
 @implementation AppDelegate (PusherBeams)
 
 // A UIApplication delegate

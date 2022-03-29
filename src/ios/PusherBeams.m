@@ -1,4 +1,5 @@
 #import "PusherBeams.h"
+#import "AppDelegate.h"
 @import PushNotifications;
 
 #pragma mark -
@@ -23,7 +24,7 @@ static PusherBeams* pusherBeams;
     [[PushNotifications shared] startWithInstanceId:@"73f408d7-80a4-4986-a105-7be1f7081dbc"]; // Can be found here: https://dash.pusher.com
     [[PushNotifications shared] registerForRemoteNotifications];
     NSError *anyError;
-    [[PushNotifications shared] addDeviceInterestWithInterest:@"debug-test" error:&anyError];
+    [[PushNotifications shared] addDeviceInterestWithInterest:@"debug-hello" error:&anyError];
   }];
   NSLog(@"registerForRemoteNotifications completed");
   CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
