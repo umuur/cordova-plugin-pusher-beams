@@ -32,10 +32,20 @@
 
     <config-file target="config.xml" parent="/*">
       <feature name="PusherBeams">
-        <param name="ios-package" value="PusherBeams" />
+				<param name="ios-package" value="PusherBeams" />
+				<param name="onload" value="true" />
       </feature>
     </config-file>
 
+		<config-file target="*-Info.plist" parent="UIBackgroundModes">
+			<array>
+				<string>remote-notification</string>
+			</array>
+		</config-file>
+
+
+		<header-file src="src/ios/AppDelegate+PusherBeams.h" target-dir="PusherPlugin"/>
+		<source-file src="src/ios/AppDelegate+PusherBeams.m" target-dir="PusherPlugin"/>	
     <header-file src="src/ios/PusherBeams.h" target-dir="PusherPlugin"/>
     <source-file src="src/ios/PusherBeams.m" target-dir="PusherPlugin"/>
 
