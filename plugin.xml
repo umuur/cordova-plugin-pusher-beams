@@ -33,7 +33,6 @@
     <config-file target="config.xml" parent="/*">
       <feature name="PusherBeams">
 				<param name="ios-package" value="PusherBeams" />
-				<param name="onload" value="true" />
       </feature>
     </config-file>
 

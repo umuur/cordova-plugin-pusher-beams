@@ -1,4 +1,4 @@
 #import "AppDelegate.h"
 
-@interface AppDelegate (PusherBeams)
+@interface AppDelegate (PusherBeams) <UIApplicationDelegate>
 @end
