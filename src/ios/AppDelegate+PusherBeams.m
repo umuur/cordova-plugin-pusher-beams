@@ -1,17 +1,18 @@
 #import "AppDelegate+PusherBeams.h"
 #import "PusherBeams.h"
+@import PushNotifications
 
-@interface AppDelegate ()
-
-@end
 
 @implementation AppDelegate (PusherBeams)
 
 // A UIApplication delegate
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  NSLog(@"didRegisterForRemoteNotificationsWithDeviceToken starting");
-	[PusherBeams.pusherBeams registerDeviceToken:deviceToken];
-	NSLog(@"registerDeviceToken completed");
+    [[PushNotifications shared] registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    [[PushNotifications shared] handleNotificationWithUserInfo:userInfo];
+    NSLog(@"%@", userInfo);
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

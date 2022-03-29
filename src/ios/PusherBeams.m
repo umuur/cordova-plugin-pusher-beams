@@ -7,16 +7,6 @@
 
 @implementation PusherBeams
 
-static PusherBeams* pusherBeams;
-
-+ (PusherBeams*) pusherBeams {
-	return pusherBeams;
-}
-
-- (void)pluginInitialize {
-	pusherBeams = self;
-}
-
 - (void)registerUserId:(CDVInvokedUrlCommand*)command {
   NSLog(@"registerUserId starting");
   [self.commandDelegate runInBackground:^{
@@ -38,12 +28,6 @@ static PusherBeams* pusherBeams;
         CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
     }];
-}
-
-- (void)registerDeviceToken:(NSData*)deviceToken {
-	NSLog(@"deviceTokenMethod inside the plugin");
-	[[PushNotifications shared] registerDeviceToken:deviceToken];
-	NSLog(@"registerDeviceToken method executed");
 }
 
 @end
