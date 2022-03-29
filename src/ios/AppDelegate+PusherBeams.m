@@ -1,6 +1,6 @@
 #import "AppDelegate+PusherBeams.h"
 #import "PusherBeams.h"
-@import PushNotifications
+@import PushNotifications;
 
 
 @implementation AppDelegate (PusherBeams)
